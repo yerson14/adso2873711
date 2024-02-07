@@ -6,6 +6,6 @@
 
 |Tema||Descripcion|
 |----||----|
-|01-HTML||LEnguaje de Etiqueta|
-|02-CSS||Hoja de Esilos en Cascada|
-|03-Javascript||Lenguaje de Programcion|
+|01-HTML|LEnguaje de Etiqueta|
+|02-CSS|Hoja de Esilos en Cascada|
+|03-Javascript|Lenguaje de Programcion|
