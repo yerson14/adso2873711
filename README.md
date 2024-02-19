@@ -6,7 +6,7 @@
 
 |Tema|Descripcion|
 |----|----|
-|01- Emmet|flujo de trabajo|
+|01- Emmet|Flujo de trabajo|
 |02- HTML|LEnguaje de Etiqueta|
 |03- CSS|Hoja de Esilos en Cascada|
 |04- Javascript|Lenguaje de Programcion|
