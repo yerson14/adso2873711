@@ -6,6 +6,28 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     font-family: Poppins, sans-serif;
     color: aliceblue;
 }
+
+nav.controls {
+    position: fixed;
+    a:is(:link, :visited) {
+        border-radius: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0009;
+        height: 60px;
+        width: 60px;
+        padding: 10px;
+        transform: scale(0.8);
+        opacity: 0.4;
+        transition: all 0.4s ease-in;
+     
+    }
+    a:is(:hover) {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 main{
     display: flex;
     flex-direction: column;
@@ -71,4 +93,31 @@ main{
             transform: scale(1.2) rotateX(360deg);
         }
     }
+
+    section{
+        border-radius: 10px;
+        background-color: #fff;
+        color: #0009;
+        padding: 10px;
+        width: 400px;
+
+        h3{
+            border-bottom: 2px dotted #0004;
+            color: #0009;
+            font-size: 1.6rem;
+            margin: 0;
+            width: fit-content;
+        }
+        p{
+            font-size: 1.4rem;
+            margin: 10px 0;
+        }
+        xmp{
+            border-radius: 10px;
+            background-color: #0009;
+            color: #fff9;
+            padding: 0 10px 10px 10px;
+        }
+    }
+
 }
