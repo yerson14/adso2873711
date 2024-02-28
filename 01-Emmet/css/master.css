@@ -109,7 +109,7 @@ main{
             width: fit-content;
         }
         p{
-            font-size: 1.4rem;
+            font-size: 0.8rem;
             margin: 10px 0;
         }
         xmp{
@@ -117,7 +117,9 @@ main{
             background-color: #0009;
             color: #fff9;
             padding: 0 10px 10px 10px;
+            font-size: 0.6rem;
         }
+        
     }
 
 }
