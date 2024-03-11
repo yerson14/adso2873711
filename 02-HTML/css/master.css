@@ -96,7 +96,7 @@ main{
 
     section{
         border-radius: 10px;
-        background-color: #fff;
+        background-color: rgb(175, 173, 173);
         color: #0009;
         padding: 10px;
         width: 400px;
