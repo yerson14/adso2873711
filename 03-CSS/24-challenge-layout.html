@@ -5,24 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        html{
+            border: 7px solid white;
+        }
              body{
-            background-color: green;
-            border: 4px solid white;
-            margin: 0;
-            padding: 0;
+            background-color: #17A053;
         }
         main{
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
         }
-
         div.sprite{
             background: url(Images/spriteweb.png) no-repeat;
             background-position: -10px -400px;
-            border: 2px solid black;
             margin: 0 auto;
             height: 180px;
             width: 190px;
@@ -31,26 +28,32 @@
             display: flex;
             gap: 15px;
             justify-content: center;
+            padding: 10px;
         }
         a.menu{
-            background-color: rgba(187, 223, 187, 0.24);
-            border-bottom: 3px solid white;
+            background-color: rgba(0, 0, 0, 0.473);
+            border-bottom: 4px solid white;
             text-align: center;
-            padding: 15px;
+            width: 115px;
             cursor: pointer;
+            padding: 15px;
+            font-size: 1rem;
+            color: #fff;
         }
         a.menu:is(:hover){
-            background-color: gray;
-            border-bottom: 3px solid yellow;
+            background-color: rgba(128, 128, 128, 0.678);
+            border-bottom: 4px solid gold;
         }
-        section div#nn  {
-            display: flex;
-            background-color: greenyellow;
+        section#section1{
             height: 230px;
             width: 840px;
             margin: 0 auto;
-            border: 2px solid black;
-
+    
+        }
+        div#nn{
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.473);
+        
         }
         div.img1{
             border: 2px solid white;
@@ -60,89 +63,91 @@
             width: 250px;
             justify-content:center;  
             margin: 18px auto;
-            border: 2px solid black;
+      
         }
        a.sp01{
            font-size: 2rem;
-            width: 248px;
+            width: 249.5px;
             height: 50px;
-            background-color: #ebe0e02d;
+            background-color: rgba(255, 255, 255, 0.404);
             text-align: center;
             cursor: pointer;
          justify-content: center;
-            border: 2px solid black;
+      
             display: flex;
         }
         a.sp01:is(:hover){
-           background-color: rgba(240, 248, 255, 0.384);
+           background-color: rgba(240, 248, 255, 0.815);
         }
-        section#section2 div#dd1{
-            background-color: greenyellow;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 6px solid greenyellow;
-            height: auto;
-            width: auto;
+        section#section2{
+            background-color: rgba(0, 0, 0, 0.473);
+        width: 840px;
+        margin: 20px auto;
+        align-items: center;
+        justify-content: center;
+        }
+        div#dd1{
+        background-color: #fff;
+        height: 200px;
+        width: 820px;
+        margin: 10px auto;
+        display: flex;
+        justify-content: center;
+    
         }
         section div#dd1 div#img2{
-            background: url(Images/spriteweb.png) no-repeat;
-            background-position: -250px -490px ; 
-            height: 190px;
-            width: 200px; 
-            justify-content: center;
-            margin: 0px auto;
-            padding: 0;
-            display: flex;
-            background-color:white;
+          background: url(Images/spriteweb.png) no-repeat center;
+        background-position: -280px -490px;
+        width: 200px;
+        height: 400px;  
         }
-        div#text{
-            height: 190px;
-            width: 590px;
-            justify-content:center;  
-            background-color: white;
-            text-align: center;
-            margin: 0px auto;
-            display: flex;
+        p{
+            height: 199px;
+        width: 500px;
+        line-height: 1.6rem;
+        margin: 5px auto;
+        display: flex;
+        align-items: center;
+        font-size: 1.0rem;
             cursor: pointer;
         } 
         div#img3{
             background: url(Images/spriteweb.png) no-repeat;
             background-position: -30px -200px; 
-            height: 190px;
-            width: 200px; 
-            justify-content: center;
-            margin: 0px auto;
-            display: flex;
+            width: 200px;
+            height: 190px; 
             
         }
      
         section#section3{
-            background-color: white;
-            justify-content:center;
-            height: 500px;
-            width: 845px;
-            margin: 0px auto;
+        width: 840px;
+        margin: 20px auto;
+        background-color: #fff;
+        height: 240px;
         }
-        div.sprite_{
-            border: 2px solid white;
+        div#sprite_{
+         
             background: url(Images/spriteweb.png) no-repeat;
             background-position: -480px -438px; 
-            margin: 10px auto;
-            height: 190px;
-            width: 300px;
-            display: flex; 
+            margin: 0 auto;
+            height: 180px;
+            width: 295px;
         }
-        a.menu1{
-            background-color: rgba(187, 223, 187, 0.24);
-            border-bottom: 3px solid white;
-            padding: 15px;
+        div#menu1{
+            gap: 5.2rem;
+            width: 200px;
+            display: flex;
+            margin-left: 3px;
+        }
+        a#menu2{
+            text-align: center;
+            width: 200px;
             cursor: pointer;
-            display:inline;
+            padding: 10px;
+            font-size: 1rem;
         }
-        a.menu1:is(:hover){
-            background-color: gray;
-            border-bottom: 3px solid yellow;
+        a#menu2:is(:hover){
+            border-bottom: 5px solid green;
         }
 
     </style>
@@ -152,14 +157,14 @@
     <div class="sprite"></div>
     <br>
     <header>
-        <a class="menu">s</a>
-        <a class="menu">aaaaaaas</a>
-        <a class="menu">s</a>
-        <a class="menu">s</a>
-        <a class="menu">s</a>
+        <a class="menu">INICIO</a>
+        <a class="menu">NOSOTROS</a>
+        <a class="menu">PORTAFOLIO</a>
+        <a class="menu">SERVICIOS</a>
+        <a class="menu">CONTACTO</a>
     </header>
     <br>
-    <section>
+    <section id="section1">
         <div id="nn">
             <div class="img1">
                 <a class="sp01">sss</a>
@@ -172,27 +177,33 @@
             </div>
         </div>
     </section>
-    <br>
+ 
     <section id="section2">
         <div id="dd1">
             <div id="img2"></div>
-            <div id="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt earum, blanditiis quae alias expedita at necessitatibus illo mollitia in quaerat nostrum corporis ea temporibus facilis perspiciatis molestias dolor. Laudantium id voluptatum magnam quo incidunt quidem saepe provident vel totam, aut, facere, unde enim architecto labore? Officiis maxime quibusdam consequatur magni illum esse unde harum </div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt earum, blanditiis quae alias expedita at necessitatibus illo mollitia in quaerat nostrum corporis ea temporibus facilis perspiciatis molestias dolor. Laudantium id voluptatum magnam quo incidunt quidem saepe provident vel totam, aut, facere, unde enim architecto labore? Officiis maxime quibusdam consequatur magni illum esse unde harum </p>
             <div id="img3"></div>
         </div>
         <div id="dd1">
             <div id="img2"></div>
-            <div id="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt earum, blanditiis quae alias expedita at necessitatibus illo mollitia in quaerat nostrum corporis ea temporibus facilis perspiciatis molestias dolor. Laudantium id voluptatum magnam quo incidunt quidem saepe provident vel totam, aut, facere, unde enim architecto labore? Officiis maxime quibusdam consequatur magni illum esse unde harum </div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt earum, blanditiis quae alias expedita at necessitatibus illo mollitia in quaerat nostrum corporis ea temporibus facilis perspiciatis molestias dolor. Laudantium id voluptatum magnam quo incidunt quidem saepe provident vel totam, aut, facere, unde enim architecto labore? Officiis maxime quibusdam consequatur magni illum esse unde harum </p>
             <div id="img3"></div>
         </div>
         <div id="dd1">
             <div id="img2"></div>
-            <div id="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt earum, blanditiis quae alias expedita at necessitatibus illo mollitia in quaerat nostrum corporis ea temporibus facilis perspiciatis molestias dolor. Laudantium id voluptatum magnam quo incidunt quidem saepe provident vel totam, aut, facere, unde enim architecto labore? Officiis maxime quibusdam consequatur magni illum esse unde harum </div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt earum, blanditiis quae alias expedita at necessitatibus illo mollitia in quaerat nostrum corporis ea temporibus facilis perspiciatis molestias dolor. Laudantium id voluptatum magnam quo incidunt quidem saepe provident vel totam, aut, facere, unde enim architecto labore? Officiis maxime quibusdam consequatur magni illum esse unde harum </p>
             <div id="img3"></div>
         </div>
     </section>
-    <br>
     <section id="section3">
         <div id="sprite_"></div>
+       <div id="menu1">
+        <a id="menu2">INICIO</a>
+        <a id="menu2">NOSOTROS</a>
+        <a id="menu2">PORTAFOLIO</a>
+        <a id="menu2">SERVICIOS</a>
+        <a id="menu2">CONTACTO</a>
+       </div>
     </section>
   </main>  
 </body>
