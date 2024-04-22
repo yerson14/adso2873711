@@ -5,11 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADSO 2873711</title>
     <link rel="stylesheet" href="css/master.css">
+    <style>
+        div.menus{
+            display: flex;
+            gap: 1rem;
+        }
+        @media screen and (max-width: 580px) {
+            div.menus {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="controls">
         <a href="../index.html">
-           <svg xmlns "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#000000" d="M320 33.8V160H48.5C100.2 82.8 188.1 32 288 32c10.8 0 21.5 .6 32 1.8zM352 160V39.1C424.9 55.7 487.2 99.8 527.5 160H352zM29.9 192H96V320H0c0-46 10.8-89.4 29.9-128zM192 320H128V192H448V320H384v32H576v80c0 26.5-21.5 48-48 48H352V352c0-35.3-28.7-64-64-64s-64 28.7-64 64V480H48c-26.5 0-48-21.5-48-48V352H192V320zm288 0V192h66.1c19.2 38.6 29.9 82 29.9 128H480z"/></svg>"
+        <svg xmlns "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#000000" d="M320 33.8V160H48.5C100.2 82.8 188.1 32 288 32c10.8 0 21.5 .6 32 1.8zM352 160V39.1C424.9 55.7 487.2 99.8 527.5 160H352zM29.9 192H96V320H0c0-46 10.8-89.4 29.9-128zM192 320H128V192H448V320H384v32H576v80c0 26.5-21.5 48-48 48H352V352c0-35.3-28.7-64-64-64s-64 28.7-64 64V480H48c-26.5 0-48-21.5-48-48V352H192V320zm288 0V192h66.1c19.2 38.6 29.9 82 29.9 128H480z"/></svg>"
         </a>
 </nav>
 <main>
@@ -17,15 +28,17 @@
         <h1>CSS</h1>
         <h2> Es el lenguaje que usamos para darle estilo a un pagina</h2>
     </header>
-    <menu>
-        <a href="01-DocumentStyle.html">
-            <i>01</i>
-            <span>Document Style</span>
-        </a>
-        <a href="02-CSSFile.html">
-            <i>02</i>
-            <span>CSS File</span>
-        </a>
+    <div class="menus">
+        <menu>
+            <h3>Reference 2.3</h3>
+            <a href="01-DocumentStyle.html">
+                <i>01</i>
+                <span>Document Style</span>
+            </a>
+            <a href="02-CSSFile.html">
+                <i>02</i>
+                <span>CSS File</span>
+            </a>
         <a href="03-AtributeStyle.html">
             <i>03</i>
             <span>Atribute Style</span>
@@ -86,13 +99,13 @@
             <i>17</i>
             <span>Visualization</span>
         </a>
-        </a>
-        <a href="18-typography.html">
-            <i>18</i>
-            <span>Typography</span>
-        </a>
-        <a href="19-text.html">
-            <i>19</i>
+    </a>
+    <a href="18-typography.html">
+        <i>18</i>
+        <span>Typography</span>
+    </a>
+    <a href="19-text.html">
+        <i>19</i>
             <span>Text</span>
         </a>
         <a href="20-pseudoClasses.html">
@@ -111,11 +124,39 @@
             <i>23</i>
             <span>Sprite</span>
         </a>
-        <a href="24-challenge-layout.html" target=_"_blank">
+        <a href="24-challenge-layout.html" target="_blank">
             <i>24</i>
             <span>Challenge Layout with Sprite</span>
         </a>
     </menu>
+    <menu>
+        <h3>Reference 3</h3>
+        <a href="25-new-selectors.html">
+            <i>25</i>
+            <span>New Selector</span>
+        </a>
+        <a href="26-borderRadius.html">
+            <i>26</i>
+            <span>Border radius</span>
+        </a>
+        <a href="27-Box-Shadow.html">
+            <i>27</i>
+            <span>Box Shadow</span>
+        </a>
+        <a href="28-new-selectors.html">
+            <i>28</i>
+            <span>Border Radius</span>
+        </a>
+        <a href="29-new-selectors.html">
+            <i>29</i>
+            <span>Border Radius</span>
+        </a>
+        <a href="30-new-selectors.html">
+            <i>30</i>
+            <span>Border Radius</span>
+        </a>
+    </menu>
+</div>
 </main> 
 </body>
 </html>
