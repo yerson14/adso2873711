@@ -7,12 +7,20 @@
     <link rel="stylesheet" href="css/master.css">
    
     <style>
-       ul{
-        color: crimson;
-       }
-       ul li ol li:last-child{
-        color: black;
-       }
+     div.clip{
+        background: url(Images/pittsburgh.jpg) no-repeat center;
+        background-size: cover;
+        height: 240px;
+        margin-block: 1rem;
+        margin-inline: auto;
+        width: 320px;
+     }
+     div.clip1{
+        clip-path: polygon(0 29%, 29% 28%, 15% 0%, 85% 0%, 78% 19%, 100% 29%, 100% 62%, 79% 63%, 85% 100%, 15% 100%, 25% 69%, 0% 85%);
+     }
+     div.clip2{
+        clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 22% 53%, 70% 53%, 72% 63%, 14% 63%, 17% 100%, 100% 100%, 100% 0%);
+     }
     </style>
 </head>
 <body>
@@ -24,29 +32,16 @@
     </nav>
 <main>
     <header>
-        <h1>Inheritance</h1>
-        <h2>Sus propiedades se heredan desde el padre y pasa a los descendientes</h2>
+        <h1>Clip Path</h1>
+        <h2>Es un area de un conjunto de partes que seran mostradas</h2>
          
      
     </header>
 <section>
-    <ul>
-        <li>Metroid Dread</li>
-        <li>Ori and the blind forest</li>
-        <li>Hollow Knight</li>
-        <li>Prince of persia</li>
-        <li>
-            Zelda Tears of The kingdom
-            <ol>
-                <li>Zelda</li>
-                <li>Link</li>
-                <li>Gannondorf</li>
-                <li>Riju</li>
-                <li>Sidon</li>
-                <li>Yunobo</li>
-            </ol>
-        </li>
-    </ul>
+    <h3>Example 01:</h3>
+    <div class="clip1"></div>
+    <h3>Example 02:</h3>
+    <div class="clip2"></div>
 </section>
     
 </main> 
