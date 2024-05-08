@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            transition: all 2s ease-in;
+        }
+        body{
+            background-color: #860305;
+        }
+        figure.RD1{
+            background: url(Images/read_dead2-removebg-preview.png) no-repeat;
+            margin: 0 auto;
+            height: 332px;
+            width: 750px;
+        }
+        @media (max-width: 1024px){
+            main header figure.RD1{
+                background: url(Images/logo2-removebg-preview.png) no-repeat center;
+                width: 666px;
+                height: 375px;
+            }
+            figure.RD1{
+                display: url(Images/read_dead2-removebg-preview.png) none;
+            }
+        }
+        @media (max-width: 780px){
+            main header figure.RD1{
+                background: url(Images/logo3-removebg-preview.png) no-repeat center;
+                width: 370px;
+                height: 256px;
+            }
+            figure.RD1{
+                display: url(Images/read_dead2-removebg-preview.png) none;
+                display: url(Images/logo2-removebg-preview.png) none;
+            }
+        }
+        div.contenedor{
+            display: flex;
+            border: 2px solid black;
+            height: 300px;
+            width: 900px;
+            margin: 0 auto;
+            gap: 10px;
+            justify-content: center;
+            
+        }
+        div.personaje01{
+            background: url(Images/mqdefault.jpg) no-repeat;
+            display: flex;
+            width: 300px;
+            height: 180px;
+            margin-top: 40px;
+            border: 2px solid black;
+            align-items: flex-end;
+        }
+        p.personaje1{
+            cursor: pointer;
+            color: #860305;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            height: 40px;
+            width: 100%;
+            background-color: rgb(0, 0, 0);
+            border-top: 4px solid ;
+        }
+        p.personaje1:hover{
+            border-top: none;
+            height: 90px;
+            background: url(Images/hqdefault-removebg-preview.png) no-repeat;
+            background-position: -100px -100px;
+            color: white;
+        }
+        div.personaje02{
+            background: url(Images/j6PNgNy.png) no-repeat center;
+            background-position: -700px -300px;
+            display: flex;
+            width: 300px;
+            height: 180px;
+            margin-top: 40px;
+            border: 2px solid black;
+            align-items: flex-end;
+        }
+        p.personaje2{
+            cursor: pointer;
+            color: #860305;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            height: 40px;
+            width: 100%;
+            background-color: rgb(0, 0, 0);
+            border-top: 4px solid ;
+        }
+        p.personaje2:hover{
+            border-top: none;
+            height: 90px;
+            background: url(Images/niñoJack.jpg) no-repeat;
+            background-position: -10px -10px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <figure class="RD1"></figure>
+        </header>
+        <br>
+        <div class="contenedor">
+            <div class="personaje01">
+                <p class="personaje1">El hombre extraño</p>
+            </div>
+            <div class="personaje02">
+                <p class="personaje2">Jack Marston</p>
+            </div>
+            <div class="personaje03">
+                <div class="personaje3"></div>
+            </div>
+            <div class="personaje04">
+                <div class="personaje4"></div>
+        </div>
+        </div>
+        </main>
+
+</body>
+</html>
