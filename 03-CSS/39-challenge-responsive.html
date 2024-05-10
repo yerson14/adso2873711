@@ -10,15 +10,22 @@
             transition: all 2s ease-in;
         }
         body{
-            background: url(Images/55-557699_assassins-creed-background-animus.jpg);
+            background: url(Images/55-557699_assassins-creed-background-animus.jpg)center;
             background-size: contain;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+        
         figure.Assassins{
             background: url(Images/logoAsassins.png) no-repeat;
             margin: 0 auto;
             height: 307px;
             width: 1024px;
             display: flex;
+           
         }
         @media (max-width: 1024px){
             main header figure.Assassins{
@@ -42,13 +49,12 @@
             }
         }
         div.contenedor{
+            margin: 0;
+            padding: 0;
             display: flex;
-            height: 300px;
-            width: 1100px;
-            margin: 0 auto;
-            gap: 10px;
             justify-content: center;
-            
+            align-items: center;
+            gap: 10px;
         }
         div.personaje01{
             background: url(Images/Ezio.jpg) no-repeat;
@@ -78,7 +84,7 @@
             background: url(Images/Ezio2.jpg) no-repeat;
             background-size: cover;
         }
-        div.personaje02{
+        div.personaje002{
             background: url(Images/Desmond.jpg) no-repeat center;
             background-size: cover;
             display: flex;
@@ -102,9 +108,9 @@
         }
         p.personaje2:hover{
             border-top: none;
-            height: 90px;
             background: url(Images/desmond1.jpg) no-repeat center;
             background-size: cover;
+            height: 90px;
         }
         div.personaje03{
             background: url(Images/Conor.jpg) no-repeat ;
@@ -188,16 +194,32 @@
                 flex-direction:column;
                 width: 800px;
                 height: 900px;
-                margin: -140px auto;
-                padding: 140px;
+                margin: -120px auto;
+                padding: 100px;
                 gap: 10px;
                 justify-content: center;
             }
-            div.personaje01{
-                width: 300px;
-                height: 250px;
-                display: flex;
-            }
+        }
+        div.contenedor2{
+            display: flex;
+            flex-direction:row;
+            justify-content: center;   
+            border: 2px solid black;
+            height: 700px;
+        }
+        div.imagen1{
+            background: url(Images/ezio.jpg) no-repeat center;
+            background-size: cover;
+            display: flex;
+            width: 300px;
+            margin-right: auto;
+            height: 250px;
+           
+            border: 2px solid black;
+            align-items: flex-end;
+        }
+        p.descripcion1{
+          
         }
     </style>
 </head>
@@ -211,7 +233,7 @@
             <div class="personaje01">
                 <p class="personaje1">Ezio Auditore</p>
             </div>
-            <div class="personaje02">
+            <div class="personaje002">
                 <p class="personaje2">Desmond Mile</p>
             </div>
             <div class="personaje03">
@@ -220,6 +242,11 @@
             <div class="personaje04">
                 <p class="personaje4">Edward Kenway</p>
         </div>
+        </div>
+        <br>
+        <div class="contenedor2">
+            <div class="imagen1"></div>
+                <p class="descripcion1">lorem5</p>
         </div>
         </main>
 
