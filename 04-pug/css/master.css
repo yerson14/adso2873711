@@ -38,6 +38,9 @@ main{
     min-height: 100vh;
 
     header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         h1 , h2{
             color: #000000;
             text-align: center;
@@ -52,6 +55,10 @@ main{
             font-size: 1.4rem;
             font-weight: 300;
         }
+        img{border-radius: 50%;
+            width: 160px;
+            border: 10px solid #0009;
+            }
     }
     menu{
         display: flex;
