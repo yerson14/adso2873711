@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sección Fallout</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body{
+            background: url(images/pngtree-images-for-fallout-3-image_2949943.jpg);
+            background-size: cover;
+        }
+        /* Estilo específico para esta sección */
+        .button {
+            background-color: #facc15; /* color amarillo de Tailwind */
+            color: black;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            border-radius: 12px; /* redondeo de los bordes */
+        }
+        .container {
+            width: 90%; /* Ancho del contenedor en pantallas pequeñas */
+            max-width: 400px; /* Tamaño máximo del contenedor */
+            text-align: center; /* Centra el texto */
+            border-radius: 20px;
+            position: relative; /* Agregado para posicionar la flecha */
+        }
+        .container img {
+            max-width: 100%; /* Ajusta el tamaño de las imágenes */
+            height: auto; /* Mantiene la proporción de las imágenes */
+            margin: 0 auto; /* Centra las imágenes */
+        }
+        .hidden-section {
+            display: none;
+        }
+        .half-yellow {
+            background: linear-gradient(to right, #1e3a8a 50%, #1e3a8a 50%);
+        }
+        .circle-number {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            line-height: 2rem;
+            border-radius: 50%;
+            background-color: #facc15;
+            color: black;
+            text-align: center;
+            margin-right: 0.8rem;
+        }
+        .back-arrow {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            cursor: pointer;
+        }
+        @media (min-width: 640px) {
+            .container {
+                width: 60%; /* Ancho del contenedor en pantallas medianas */
+            }
+        }
+        @media (min-width: 1024px) {
+            .container {
+                width: 40%; /* Ancho del contenedor en pantallas grandes */
+            }
+        }
+        .box {
+            border: 2px solid #facc15; /* Borde amarillo */
+            border-radius: 12px; /* Bordes redondeados */
+            padding: 1rem;
+            background-color: #1e3a8a; /* Fondo azul oscuro */
+            margin-bottom: 1rem; /* Espacio inferior */
+            font-size: 0.875rem; /* Fuente más pequeña */
+            text-align: left; /* Alinear texto a la izquierda */
+        }
+        .additional-text {
+            color: white; /* Color de texto blanco */
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 1rem; /* Tamaño de fuente para el texto adicional */
+        }
+    </style>
+    <script>
+        function showSection(sectionToShow) {
+            document.getElementById('fallout-section').style.display = 'none';
+            document.getElementById('mutantes-iconicos').style.display = 'none';
+            document.getElementById('juegos-section').style.display = 'none';
+            document.getElementById(sectionToShow).style.display = 'block';
+        }
+    </script>
+</head>
+<body class="bg-gray-800 flex items-center justify-center min-h-screen relative">
+
+    <!-- Contenedor de la sección -->
+    <div id="fallout-section" class="container bg-blue-900 p-5 text-white">
+        <img src="images/image 1.png" alt="Logo de Fallout" class="w-96">
+        <img src="images/logo-removebg-preview 1.png" alt="">
+        <p class="mt-1">Fallout es una serie de videojuegos de rol publicados originalmente por Interplay, posteriormente por Bethesda Softworks y actualmente por Xbox Game Studios.</p>
+        <button class="button" onclick="showSection('mutantes-iconicos')">Conoce más acerca de Fallout</button>
+    </div>
+
+    <!-- Nueva sección -->
+    <div id="mutantes-iconicos" class="container bg-blue-900 p-5 text-white mt-10 hidden-section half-yellow">
+        <div class="back-arrow" onclick="showSection('fallout-section')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </div>
+        <h2 class="text-2xl font-bold mb-4">MUTANTES ICÓNICOS</h2>
+        <div class="mb-4 flex items-start">
+            <span class="circle-number">1</span>
+            <div>
+                <h3 class="text-xl font-semibold"><strong>Sanguinarios</strong></h3>
+                <p>Son una especie ágil, fuerte y de gran tamaño provenientes de la mutación del camaleón de Jackson.</p>
+                <img src="images/Fallout-4-Como-derrotar-a-los-sanguinarios.jpg" alt="" class="w-full mt-2">
+            </div>
+        </div>
+        <div class="mb-4 flex items-start">
+            <span class="circle-number">2</span>
+            <div>
+                <h3 class="text-xl font-semibold">Necrófagos</h3>
+                <p>Son seres humanos mutados o animales afectados por el fenómeno de la necrofaguización.</p>
+            </div>
+        </div>
+        <div class="mb-4 flex items-start">
+            <span class="circle-number">3</span>
+            <div>
+                <h3 class="text-xl font-semibold">Yao Guai</h3>
+                <p>Criatura típica de la saga, hace otra aparición en la cuarta entrega.</p>
+            </div>
+        </div>
+        <div class="mb-4 flex items-start">
+            <span class="circle-number">4</span>
+            <div>
+                <h3 class="text-xl font-semibold">Mutaracha</h3>
+                <p>Son el primer enemigo, y el más débil, que se encuentra en el juego.</p>
+            </div>
+        </div>
+        <button class="button mt-4" onclick="showSection('juegos-section')">Conoce más acerca del juego</button>
+    </div>
+
+    <!-- Sección de juegos -->
+    <div id="juegos-section" class="container bg-blue-900 p-5 text-white mt-10 hidden-section half-yellow">
+        <div class="back-arrow" onclick="showSection('mutantes-iconicos')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </div>
+        <h2 class="text-2xl font-bold mb-4">TÍTULOS MÁS IMPORTANTES DE LA SAGA</h2>
+        <div class="box">
+            <div class="mb-4 flex items-start">
+                <span class="circle-number">1</span>
+                <div>
+                    <h3 class="text-lg font-semibold">Fallout: A Post Nuclear Role Playing Game (1997)</h3>
+                </div>
+            </div>
+            <div class="mb-4 flex items-start">
+                <span class="circle-number">2</span>
+                <div>
+                    <h3 class="text-lg font-semibold">Fallout 2 (1998)</h3>
+                </div>
+            </div>
+            <div class="mb-4 flex items-start">
+                <span class="circle-number">3</span>
+                <div>
+                    <h3 class="text-lg font-semibold">Fallout 3 (2008)</h3>
+                </div>
+            </div>
+            <div class="mb-4 flex items-start">
+                <span class="circle-number">4</span>
+                <div>
+                    <h3 class="text-lg font-semibold">Fallout: New Vegas (2010)</h3>
+                </div>
+            </div>
+            <div class="mb-4 flex items-start">
+                <span class="circle-number">5</span>
+                <div>
+                    <h3 class="text-lg font-semibold">Fallout 4 (2015)</h3>
+                </div>
+            </div>
+        </div>
+        <div class="additional-text">
+            <p>Estos son los principales juegos de la saga, adéntrate en un mundo postapocalíptico, con humor bizarro, mucha sangre y desgracia.</p>
+        </div>
+        <button class="button mt-4" onclick="showSection('fallout-section')">Regresar</button>
+    </div>
+</body>
+</html>
