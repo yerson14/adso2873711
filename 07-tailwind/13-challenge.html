@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body{
-            background: url(images/pngtree-images-for-fallout-3-image_2949943.jpg);
+            background: url(images//pngtree-images-for-fallout-3-image_2949943.jpg);
             background-size: cover;
         }
         /* Estilo específico para esta sección */
@@ -35,16 +35,13 @@
         .hidden-section {
             display: none;
         }
-        .half-yellow {
-            background: linear-gradient(to right, #1e3a8a 50%, #1e3a8a 50%);
-        }
         .circle-number {
             display: inline-block;
             width: 2rem;
             height: 2rem;
             line-height: 2rem;
             border-radius: 50%;
-            background-color: #facc15;
+            background-color: gray;
             color: black;
             text-align: center;
             margin-right: 0.8rem;
@@ -93,7 +90,7 @@
 <body class="bg-gray-800 flex items-center justify-center min-h-screen relative">
 
     <!-- Contenedor de la sección -->
-    <div id="fallout-section" class="container bg-blue-900 p-5 text-white">
+    <div id="fallout-section" class="container bg-gray-700 p-5 text-white">
         <img src="images/image 1.png" alt="Logo de Fallout" class="w-96">
         <img src="images/logo-removebg-preview 1.png" alt="">
         <p class="mt-1">Fallout es una serie de videojuegos de rol publicados originalmente por Interplay, posteriormente por Bethesda Softworks y actualmente por Xbox Game Studios.</p>
@@ -101,7 +98,7 @@
     </div>
 
     <!-- Nueva sección -->
-    <div id="mutantes-iconicos" class="container bg-blue-900 p-5 text-white mt-10 hidden-section half-yellow">
+    <div id="mutantes-iconicos" class="container bg-gray-700 p-5 text-white mt-10 hidden-section half-yellow">
         <div class="back-arrow" onclick="showSection('fallout-section')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-white">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -141,7 +138,7 @@
     </div>
 
     <!-- Sección de juegos -->
-    <div id="juegos-section" class="container bg-blue-900 p-5 text-white mt-10 hidden-section half-yellow">
+    <div id="juegos-section" class="container bg-gray-700 p-5 text-white mt-10 hidden-section half-yellow">
         <div class="back-arrow" onclick="showSection('mutantes-iconicos')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-white">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
