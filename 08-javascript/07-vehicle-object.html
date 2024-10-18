@@ -3,52 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link (Anchors)</title>
+    <title>07 Vehicle object</title>
     <link rel="stylesheet" href="css/master.css">
     <style>
-        section div.header{
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            transition: background-color 0.3s;
+        }
+
+        /**** Section light and night modes ****/
+        .light {
+            background-color: white;
+            color: black;
+        }
+
+        .night {
+            background-color: rgb(58, 58, 58);
+            color: white;
+        }
+
+        /**** Section Inicial ****/
+        section div.header {
             align-items: center;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            width: 380px;
+            height: 200px;
         }
+        section div.header button.btn-hidden {
+            visibility: hidden;
+        }
+        section div.header button {
+            border: none;
+            cursor: pointer;
+            height: 44px;
+            width: 44px;
+        }
+        section div.header button.btn-light {
+            background: transparent url(images/object/Btn-mode-noche.svg) no-repeat;
+            background-size: contain;
+        }
+        section div.header button.btn-night {
+            background: transparent url(images/object/mode_light.svg) no-repeat;
+            background-size: contain;
+            width: 49px;
+        }
+
+        /**** Section de Atributos ****/
+        section div.attributes, section div.attributes-night {
+            background: url(images) no-repeat;
+            height: 120px;
+            margin: 1rem auto;
+            position: relative;
+            width: 380px;
+        }
+        section div.attributes span, section div.attributes-night span {
+            position: absolute;
+        }
+        section div.attributes span.brand, section div.attributes-night span.brand {
+            top: 85px;
+            left: 4px;
+        }
+        section div.attributes span.refer, section div.attributes-night span.refer {
+            top: 85px;
+            left: 110px;
+        }
+        section div.attributes span.model, section div.attributes-night span.model { 
+            top: 85px;
+            left: 210px;
+        }
+        section div.attributes span.color, section div.attributes-night span.color {
+            top: 85px;
+            left: 300px;
+        }
+
+        /**** Section de Menu Visual Carretera ****/
+        section div.landscape {
+            background-color: #fff9;
+            border: 3px solid #714eaa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            height: 260px;
+            margin: 0 auto;
+            width: 374px;
+        }
+        section div.landscape button {
+            border: none;
+            cursor: pointer;
+            height: 44px;
+            width: 44px;
+        }
+        section div.landscape button.btn-prev {
+            background: url(images/vehicle/btn-izquierda.svg) no-repeat;
+        }
+        section div.landscape button.btn-next {
+            background: url(images/vehicle/btn-derecha.svg) no-repeat;
+        }
+
+        /**** Section de Metodos ****/
+        section div.methods, section div.methods-night {
+            background: url(images/vehicle/Metodos.svg) no-repeat;
+            width: 380px;
+            height: 110px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem auto;
+        }
+        section div.methods button, section div.methods-night button {
+            border: none;
+            cursor: pointer;
+            margin-top: 2.3rem;
+            height: 50px;
+            width: 60px;
+        }
+
     </style>
 </head>
-<body>
+<body class="light">  <!-- Comenzamos en modo claro -->
     <nav class="controls">
         <a href="index.html">
             <svg xmlns "<svg xmlns= "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>"
         </a>
-
     </nav>
-<main>
-    <header>
-        <h1>Link (Anchor)</h1>
-        <h2>Esta etiqueta permite enlazar un recurso especifico</h2>
-    </header>
-    <section class="light">
-    <div class="header">
-        <img src="" alt="">
-        <button class="btn-light"></button>
-    </div>
-    <div class="attributes">
-        <span class="brand"></span>
-        <span class=""></span>
-        <span class=""></span>
-        <span class=""></span>
-    </div>
-    <div class="lasndscape">
-        <button class="btn-prev"></button>
-        <button class="btn-next"></button>
-    </div>
-    <div class="methods">
-        <button class="btn-on"></button>
-        <button class="btn-fwd"></button>
-        <button class="btn-pause"></button>
-        <button class="btn-bwd"></button>
-        <button class="btn-off"></button>
-    </div>
-</section>
+    <main>
+        <header>
+            <h1>Vehicle object</h1>
+            <h2>Este ejercicio es una interface realizada en figma, para aplicar objetos.</h2>
+        </header>
 
-</main> 
+        <section>
+            <div class="header">
+                <button class="btn-hidden"></button>
+                <img src="images/object/logo.png" alt="">
+                <button class="btn-light" id="theme-toggle"></button>
+            </div>
+
+            <div class="attributes">
+                <span class="brand"></span>
+                <span class="refer"></span>
+                <span class="model"></span>
+                <span class="color"></span>
+            </div>
+            <div class="landscape">
+                <button class="btn-prev"></button>
+                <button class="btn-next"></button>
+            </div>
+
+            <div class="methods">
+                <button class="btn-on"></button>
+                <button class="btn-fwd"></button>
+                <button class="btn-stop"></button>
+                <button class="btn-bwd"></button>
+                <button class="btn-off"></button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('night');
+            body.classList.toggle('light');
+            // Cambia la imagen del botón entre bombillo claro y oscuro
+            if (body.classList.contains('night')) {
+                themeToggle.classList.remove('btn-light');
+                themeToggle.classList.add('btn-night');
+            } else {
+                themeToggle.classList.remove('btn-night');
+                themeToggle.classList.add('btn-light');
+            }
+        });
+    </script>
 </body>
 </html>
