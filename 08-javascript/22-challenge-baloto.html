@@ -72,19 +72,24 @@
         #ball1 { 
             top: 200px; 
             left: 50%; transform: 
-            translateX(-50%); }
+            translateX(-50%); 
+        }
         #ball2 { 
             top: 270px; 
-            left: 50px; }
+            left: 50px; 
+        }
         #ball3 { 
             top: 270px; 
-            right: 50px; }
+            right: 50px; 
+        }
         #ball4 { 
             bottom: 150px; 
-            left: 80px; }
+            left: 80px; 
+        }
         #ball5 { 
             bottom: 150px; 
-            right: 80px; }
+            right: 80px; 
+        }
         .contenedor-circulo {
             position: absolute;
             bottom: 30px;
@@ -159,37 +164,44 @@
         </section>
     </main>
     <script>
-        document.getElementById("iniciar").addEventListener("click", 
-        function() {
-            let numbers = [];
-            while (numbers.length < 5) {
-                let randomNumber = Math.floor(Math.random() * 43) + 1;
-                if (!numbers.includes(randomNumber)) {
-                    numbers.push(randomNumber);
-                }
+        document.getElementById("iniciar").addEventListener("click", function() {
+            let numbers = new Set(); // Usamos un Set para evitar repeticiones
+    
+            // Generar 5 números únicos entre 1 y 43
+            while (numbers.size < 5) {
+                numbers.add(Math.floor(Math.random() * 43) );
             }
-            let goldenNumber = Math.floor(Math.random() * 17);
+    
+            let numbersArray = Array.from(numbers); // Convertimos el Set en un array
+    
+            let goldenNumber;
+            let goldenNumbers = new Set(numbersArray); // Usamos un Set basado en los números ya generados
+            
+            do {
+                goldenNumber = Math.floor(Math.random() * 17);
+            } while (goldenNumbers.has(goldenNumber)); // Aseguramos que no se repita
+    
             let balls = document.querySelectorAll(".ball");
+            
             balls.forEach((ball, index) => {
                 setTimeout(() => {
                     ball.style.display = "block";
-                    ball.querySelector("span").textContent = numbers[index];
+                    ball.querySelector("span").textContent = numbersArray[index];
                 }, index * 500);
             });
             setTimeout(() => {
                 let goldenBall = document.getElementById("goldenBall");
                 goldenBall.querySelector("span").textContent = goldenNumber;
                 goldenBall.style.animation = "none";
-                
-                // Disparar confetti cuando se muestra la Golden Ball 🎉
                 confetti({
                     particleCount: 100,
                     spread: 70,
                     origin: { y: 0.6 }
                 });
-
+    
             }, balls.length * 500);
         });
     </script>
+    
 </body>
 </html>
