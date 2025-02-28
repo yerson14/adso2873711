@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baloto Game</title>
+    <link rel="stylesheet" href="css/master.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <style>
+        .cancha {
+            position: relative;
+            width: 400px;
+            height: 600px;
+            background: url('images/baloto/bg.png') no-repeat center/cover;
+        }
+        .button {
+            position: absolute;
+            width: 140px;
+            height: 45px;
+            background: #1AAB8A;
+            color: #fff;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 8px;
+            transition: 400ms ease all;
+            outline: none;
+        }
+        .button:hover {
+            background: #fff;
+            color: #1AAB8A;
+        }
+        #iniciar { 
+            top: 60px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+        }
+        .player {
+            position: absolute;
+            width: 130px;
+        }
+        #player1 { 
+            top: 70px; 
+            left: 10px; 
+        }
+        #player2 { 
+            top: 70px; 
+            right: 20px; 
+        }
+        .ball {
+            position: absolute;
+            width: 90px;
+            display: none;
+            text-align: center;
+        }
+        .ball img {
+            width: 100%;
+            height: auto;
+        }
+        .ball span {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #ball1 { 
+            top: 200px; 
+            left: 50%; transform: 
+            translateX(-50%); }
+        #ball2 { 
+            top: 270px; 
+            left: 50px; }
+        #ball3 { 
+            top: 270px; 
+            right: 50px; }
+        #ball4 { 
+            bottom: 150px; 
+            left: 80px; }
+        #ball5 { 
+            bottom: 150px; 
+            right: 80px; }
+        .contenedor-circulo {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .circulo {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: girar 3s infinite linear;
+        }
+        .circulo img {
+            width: 100px;
+            height: 100px;
+        }
+        .circulo span {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        @keyframes girar {
+            from { 
+                transform: rotate(0deg); 
+            }
+            to { 
+                transform: rotate(360deg); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns "<svg xmlns= "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>"
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>22-challenge-baloto</h1>
+            <h2>Challenge del baloto</h2>
+        </header>
+        <section>
+            <div class="cancha">
+                <button id="iniciar" class="button">Iniciar</button>
+                <img id="player1" class="player" src="images/baloto/cr7.png" alt="Player 1">
+                <img id="player2" class="player" src="images/baloto/lm10.png" alt="Player 2">
+                <div class="ball" id="ball1"><img src="images/baloto/ball.png" alt="Ball"><span></span></div>
+                <div class="ball" id="ball2"><img src="images/baloto/ball.png" alt="Ball"><span></span></div>
+                <div class="ball" id="ball3"><img src="images/baloto/ball.png" alt="Ball"><span></span></div>
+                <div class="ball" id="ball4"><img src="images/baloto/ball.png" alt="Ball"><span></span></div>
+                <div class="ball" id="ball5"><img src="images/baloto/ball.png" alt="Ball"><span></span></div>
+                <div class="contenedor-circulo">
+                    <div class="circulo" id="goldenBall"><img src="images/baloto/ball2.png" alt="Ball"><span></span></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.getElementById("iniciar").addEventListener("click", 
+        function() {
+            let numbers = [];
+            while (numbers.length < 5) {
+                let randomNumber = Math.floor(Math.random() * 43) + 1;
+                if (!numbers.includes(randomNumber)) {
+                    numbers.push(randomNumber);
+                }
+            }
+            let goldenNumber = Math.floor(Math.random() * 17);
+            let balls = document.querySelectorAll(".ball");
+            balls.forEach((ball, index) => {
+                setTimeout(() => {
+                    ball.style.display = "block";
+                    ball.querySelector("span").textContent = numbers[index];
+                }, index * 500);
+            });
+            setTimeout(() => {
+                let goldenBall = document.getElementById("goldenBall");
+                goldenBall.querySelector("span").textContent = goldenNumber;
+                goldenBall.style.animation = "none";
+                
+                // Disparar confetti cuando se muestra la Golden Ball 🎉
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+
+            }, balls.length * 500);
+        });
+    </script>
+</body>
+</html>
