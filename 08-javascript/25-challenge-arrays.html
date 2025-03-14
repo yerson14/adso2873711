@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Invincible</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-image: url('images/invincible.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e1ebed;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            color: #ffe556;
+            text-shadow: 0 0 10px rgba(255, 229, 86, 0.7);
+            margin-bottom: 10px;
+        }
+        header h2 {
+            font-size: 1.2rem;
+            color: #e1ebed;
+            margin-bottom: 30px; 
+        }
+        section {
+            background: rgba(175, 175, 175, 0.8);
+            padding: 20px;
+            border-radius: 20px; 
+            box-shadow: 0 0 20px rgba(200, 65, 45, 0.5);
+            border: 2px solid #c8412d;
+        }
+        .invincibles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 15px;
+        }
+        .invincibles img {
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            border-radius: 15px; 
+            border: 2px solid #00bcf0;
+            transition: transform 0.3s ease, border-color 0.3s ease, filter 0.3s ease;
+        }
+        .invincibles img:hover {
+            transform: scale(1.1);
+            border-color: #ffe556;
+        }
+        .invincibles img.selected {
+            border-color: #ffe556;
+            filter: none; 
+        }
+        .invincibles img:not(.selected) {
+            filter: grayscale(100%); 
+        }
+        .options {
+            margin-top: 25px; 
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px; 
+        }
+        .options button {
+            background-color: #c8412d;
+            color: #e1ebed;
+            border: none;
+            padding: 12px 24px; 
+            border-radius: 10px; 
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .options button:hover {
+            background-color: #ff4444;
+            transform: translateY(-3px);
+        }
+        .selected-list {
+            margin-top: 25px; 
+            padding: 15px;
+            background: rgba(48, 53, 57, 0.8);
+            border-radius: 15px;
+            min-height: 80px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #00bcf0;
+        }
+        .selected-list img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px; 
+            border: 2px solid #00bcf0;
+            transition: transform 0.3s ease;
+        }
+        .selected-list img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>18-Events</h1>
+            <h2>Esta etiqueta permite enlazar un recurso específico</h2>
+        </header>
+        <section>
+            <h3>1. Selecciona un Invincible</h3>
+            <div class="invincibles"></div>
+            
+            <h3>2. Selecciona una opción</h3>
+            <div class="options">
+                <button onclick="addToStart()">Agregar al inicio</button>
+                <button onclick="addToEnd()">Agregar al final</button>
+                <button onclick="removeFromStart()">Eliminar al inicio</button>
+                <button onclick="removeFromEnd()">Eliminar al final</button>
+            </div>
+            
+            <h3>3. Resultado</h3>
+            <div class="selected-list"></div>
+        </section>
+    </main>
+
+    <script>
+        const invinciblesContainer = document.querySelector('.invincibles');
+        const selectedList = document.querySelector('.selected-list');
+        let selectedInvincible = null;
+
+        let invincibles = [
+            'images/markSiniestro.jpg', 'images/invincible/markMoha.jpg', 'images/invincible/omniMark.jpg',
+            'images/invincible/phantonMark.jpg', 'images/invincible/mustacheMark.jpeg', 'images/invincible/viltrumiteMark.jpg',
+            'images/invincible/prisionerMark.jpg', 'images/invincible/markPeloLargo.jpg'
+        ];
+
+        let selectedInvincibles = [];
+
+        function renderInvincibles() {
+            invinciblesContainer.innerHTML = '';
+            invincibles.forEach((src, index) => {
+                let img = document.createElement('img');
+                img.src = src;
+                img.onclick = () => selectInvincible(img);
+                invinciblesContainer.appendChild(img);
+            });
+        }
+        function selectInvincible(img) {
+            if (selectedInvincible) {
+                selectedInvincible.classList.remove('selected'); 
+            }
+            selectedInvincible = img;
+            selectedInvincible.classList.add('selected'); 
+        }
+
+        // Métodos de arrays
+        function addToStart() {
+            if (selectedInvincible) {
+                selectedInvincibles.unshift(selectedInvincible.src);
+                updateList();
+            }
+        }
+
+        function addToEnd() {
+            if (selectedInvincible) {
+                selectedInvincibles.push(selectedInvincible.src);
+                updateList();
+            }
+        }
+
+        function removeFromStart() {
+            if (selectedInvincibles.length > 0) {
+                selectedInvincibles.shift();
+                updateList();
+            }
+        }
+
+        function removeFromEnd() {
+            if (selectedInvincibles.length > 0) {
+                selectedInvincibles.pop();
+                updateList();
+            }
+        }
+
+        function updateList() {
+            selectedList.innerHTML = '';
+            selectedInvincibles.forEach(src => {
+                let img = document.createElement('img');
+                img.src = src;
+                selectedList.appendChild(img);
+            });
+        }
+
+        // Inicializar
+        renderInvincibles();
+    </script>
+</body>
+</html>
