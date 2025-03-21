@@ -64,24 +64,53 @@
         }
         .options {
             margin-top: 25px; 
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px; 
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
-        .options button {
+        .switch-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            height: 40px;
             background-color: #c8412d;
-            color: #e1ebed;
-            border: none;
-            padding: 12px 24px; 
-            border-radius: 10px; 
+            border-radius: 34px;
             cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: background-color 0.4s;
         }
-        .options button:hover {
-            background-color: #ff4444;
-            transform: translateY(-3px);
+        .switch.on {
+            background-color: #00bcf0;
+        }
+        .switch img {
+            position: absolute;
+            top: 50%;
+            left: 4px;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            transition: left 0.4s;
+        }
+        .switch.on img {
+            left: calc(100% - 40px);
+        }
+        .action-button {
+            margin-top: 20px;
+        }
+        .action-button img {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid #00bcf0;
+            transition: transform 0.3s ease;
+        }
+        .action-button img:hover {
+            transform: scale(1.1);
         }
         .selected-list {
             margin-top: 25px; 
@@ -116,22 +145,34 @@
     </nav>
     <main>
         <header>
-            <h1>18-Events</h1>
-            <h2>Esta etiqueta permite enlazar un recurso específico</h2>
+            <h1>25-challenge-arrays</h1>
+          
         </header>
         <section>
-            <h3>1. Selecciona un Invincible</h3>
+            <h2>1. Selecciona un Invincible</h2>
             <div class="invincibles"></div>
             
-            <h3>2. Selecciona una opción</h3>
+            <h2>2. Selecciona una opción</h2>
             <div class="options">
-                <button onclick="addToStart()">Agregar al inicio</button>
-                <button onclick="addToEnd()">Agregar al final</button>
-                <button onclick="removeFromStart()">Eliminar al inicio</button>
-                <button onclick="removeFromEnd()">Eliminar al final</button>
+                <div class="switch-container">
+                    <div class="switch" id="positionSwitch" onclick="toggleSwitch('positionSwitch')">
+                        <img src="images/invincible/switch.png" alt="Mark Flying" id="positionImage">
+                    </div>
+                    <span id="positionLabel">First</span>
+                </div>
+                <div class="switch-container">
+                    <div class="switch" id="actionSwitch" onclick="toggleSwitch('actionSwitch')">
+                        <img src="images/invincible/switch.png" alt="Mark Flying" id="actionImage">
+                    </div>
+                    <span id="actionLabel">Create</span>
+                </div>
             </div>
             
-            <h3>3. Resultado</h3>
+            <div class="action-button">
+                <img src="images/invincible/btn.png" alt="Action" onclick="performAction()">
+            </div>
+            
+            <h2>3. Resultado</h2>
             <div class="selected-list"></div>
         </section>
     </main>
@@ -139,6 +180,12 @@
     <script>
         const invinciblesContainer = document.querySelector('.invincibles');
         const selectedList = document.querySelector('.selected-list');
+        const positionSwitch = document.getElementById('positionSwitch');
+        const actionSwitch = document.getElementById('actionSwitch');
+        const positionLabel = document.getElementById('positionLabel');
+        const actionLabel = document.getElementById('actionLabel');
+        const positionImage = document.getElementById('positionImage');
+        const actionImage = document.getElementById('actionImage');
         let selectedInvincible = null;
 
         let invincibles = [
@@ -158,6 +205,7 @@
                 invinciblesContainer.appendChild(img);
             });
         }
+
         function selectInvincible(img) {
             if (selectedInvincible) {
                 selectedInvincible.classList.remove('selected'); 
@@ -166,33 +214,38 @@
             selectedInvincible.classList.add('selected'); 
         }
 
-        // Métodos de arrays
-        function addToStart() {
-            if (selectedInvincible) {
-                selectedInvincibles.unshift(selectedInvincible.src);
-                updateList();
+        function toggleSwitch(switchId) {
+            const switchElement = document.getElementById(switchId);
+            switchElement.classList.toggle('on');
+
+            if (switchId === 'positionSwitch') {
+                positionLabel.textContent = switchElement.classList.contains('on') ? 'End' : 'First';
+                positionImage.src = switchElement.classList.contains('on') ? 'images/invincible/switch2.png' : 'images/invincible/switch.png';
+            } else if (switchId === 'actionSwitch') {
+                actionLabel.textContent = switchElement.classList.contains('on') ? 'Delete' : 'Create';
+                actionImage.src = switchElement.classList.contains('on') ? 'images/invincible/switch2.png' : 'images/invincible/switch.png';
             }
         }
 
-        function addToEnd() {
-            if (selectedInvincible) {
-                selectedInvincibles.push(selectedInvincible.src);
-                updateList();
-            }
-        }
+        function performAction() {
+            const position = positionSwitch.classList.contains('on') ? 'end' : 'start';
+            const action = actionSwitch.classList.contains('on') ? 'delete' : 'create';
 
-        function removeFromStart() {
-            if (selectedInvincibles.length > 0) {
-                selectedInvincibles.shift();
-                updateList();
+            if (action === 'create' && selectedInvincible) {
+                if (position === 'start') {
+                    selectedInvincibles.unshift(selectedInvincible.src);
+                } else {
+                    selectedInvincibles.push(selectedInvincible.src);
+                }
+            } else if (action === 'delete') {
+                if (position === 'start') {
+                    selectedInvincibles.shift();
+                } else {
+                    selectedInvincibles.pop();
+                }
             }
-        }
 
-        function removeFromEnd() {
-            if (selectedInvincibles.length > 0) {
-                selectedInvincibles.pop();
-                updateList();
-            }
+            updateList();
         }
 
         function updateList() {
