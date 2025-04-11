@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Dragon Ball Z</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Estilos del juego */
+        .juego-container {
+            max-width: 360px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+        
+        .pantalla {
+            width: 360px;
+            height: 640px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            margin: 20px auto;
+        }
+        
+        /* Pantalla de Inicio - Dragon Ball Z */
+        .pantalla-inicio {
+            background-color: #000;
+            color: #ffcc00;
+            text-align: center;
+            background-image: url('img/dbz-fondo-inicio.jpg');
+        }
+        
+        .pantalla-inicio h1 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+            letter-spacing: 2px;
+        }
+        
+        .boton-inicio {
+            background-color: #ff0000;
+            color: #ffcc00;
+            border: none;
+            padding: 15px 60px;
+            font-size: 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        /* Pantalla de Selección de Personaje */
+        .pantalla-personaje {
+            background-color: #000;
+            background-image: url('img/dbz-fondo-seleccion.jpg');
+            display: none;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .pantalla-personaje h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ff0000;
+        }
+        
+        .grid-personajes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        
+        .personaje {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .personaje:hover {
+            transform: scale(1.05);
+        }
+        
+        .personaje.seleccionado {
+            border: 2px solid #ffcc00;
+            box-shadow: 0 0 15px #ffcc00;
+            transform: scale(1.05);
+        }
+        
+        .imagen-personaje {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            padding: 5px;
+        }
+        
+        .nombre-personaje {
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .boton-jugar {
+            background-color: #ff0000;
+            color: #ffcc00;
+            border: none;
+            padding: 15px 60px;
+            font-size: 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff0000;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        /* Pantalla de Juego */
+        .pantalla-juego {
+            background-image: url('img/dbz-fondo-juego.jpg');
+            display: none;
+            position: relative;
+        }
+        
+        .contenedor-juego {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .jugador {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            left: 50px;
+            z-index: 10;
+            transition: transform 0.1s ease;
+        }
+        
+        .jugador img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .obstaculo {
+            position: absolute;
+            width: 80px;
+            right: -80px;
+            z-index: 5;
+        }
+        
+        .obstaculo-superior {
+            top: 0;
+        }
+        
+        .obstaculo-inferior {
+            bottom: 0;
+        }
+        
+        .obstaculo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .puntuacion {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #ffcc00;
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000, 0 0 10px #ff0000;
+            z-index: 20;
+        }
+        
+        .game-over {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 30;
+        }
+        
+        .game-over h2 {
+            color: #ff0000;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #ffcc00;
+        }
+        
+        .puntuacion-final {
+            color: #ffcc00;
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px #000;
+        }
+        
+        .boton-reiniciar {
+            background-color: #ff0000;
+            color: #ffcc00;
+            border: none;
+            padding: 15px 60px;
+            font-size: 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff0000;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns= "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>Juego Dragon Ball Z</h1>
+            <h2>Juego estilo Flappy Bird con personajes de Dragon Ball</h2>
+        </header>
+        <section>
+            <div class="juego-container">
+                <!-- Pantalla de Inicio -->
+                <div class="pantalla pantalla-inicio" id="pantallaInicio">
+                    <h1>Hora de jugar</h1>
+                    <button class="boton-inicio" id="botonInicio">INICIAR</button>
+                </div>
+
+                <!-- Pantalla de Selección de Personaje -->
+                <div class="pantalla pantalla-personaje" id="pantallaPersonaje">
+                    <h2>Elige tu personaje</h2>
+                    <div class="grid-personajes">
+                        <!-- Personaje 1 - Goku -->
+                        <div class="personaje" data-personaje="goku">
+                            <img src="img/goku.png" alt="Goku" class="imagen-personaje">
+                            <span class="nombre-personaje">Goku</span>
+                        </div>
+                        
+                        <!-- Personaje 2 - Vegeta -->
+                        <div class="personaje" data-personaje="vegeta">
+                            <img src="img/vegeta.png" alt="Vegeta" class="imagen-personaje">
+                            <span class="nombre-personaje">Vegeta</span>
+                        </div>
+                        
+                        <!-- Personaje 3 - Gohan -->
+                        <div class="personaje" data-personaje="gohan">
+                            <img src="img/gohan.png" alt="Gohan" class="imagen-personaje">
+                            <span class="nombre-personaje">Gohan</span>
+                        </div>
+                        
+                        <!-- Personaje 4 - Freezer -->
+                        <div class="personaje" data-personaje="freezer">
+                            <img src="img/freezer.png" alt="Freezer" class="imagen-personaje">
+                            <span class="nombre-personaje">Freezer</span>
+                        </div>
+                    </div>
+                    <button class="boton-jugar" id="botonJugar" disabled>Jugar</button>
+                </div>
+
+                <!-- Pantalla de Juego -->
+                <div class="pantalla pantalla-juego" id="pantallaJuego">
+                    <div class="contenedor-juego" id="contenedorJuego">
+                        <div class="puntuacion" id="puntuacion">0</div>
+                        <div class="jugador" id="jugador">
+                            <img src="img/goku.png" alt="Personaje seleccionado">
+                        </div>
+                        
+                        <div class="game-over" id="gameOver">
+                            <h2>Game Over</h2>
+                            <div class="puntuacion-final" id="puntuacionFinal">Puntuación: 0</div>
+                            <button class="boton-reiniciar" id="botonReiniciar">Jugar de nuevo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Variables del juego
+        let personajeSeleccionado = null;
+        let juegoActivo = false;
+        let puntuacion = 0;
+        let gravedad = 0.6;
+        let velocidadJugador = 0;
+        let posicionJugador = 300;
+        let obstaculos = [];
+        let espacioEntreObstaculos = 200;
+        let frecuenciaObstaculos = 2000; // ms
+        let ultimoObstaculoTiempo = 0;
+        let alturaJuego = 640;
+        let anchoJuego = 360;
+        let idAnimacion;
+
+        // Elementos del DOM
+        const pantallaInicio = document.getElementById('pantallaInicio');
+        const pantallaPersonaje = document.getElementById('pantallaPersonaje');
+        const pantallaJuego = document.getElementById('pantallaJuego');
+        const botonInicio = document.getElementById('botonInicio');
+        const botonJugar = document.getElementById('botonJugar');
+        const personajes = document.querySelectorAll('.personaje');
+        const jugador = document.getElementById('jugador');
+        const imagenJugador = jugador.querySelector('img');
+        const contenedorJuego = document.getElementById('contenedorJuego');
+        const elementoPuntuacion = document.getElementById('puntuacion');
+        const pantallaGameOver = document.getElementById('gameOver');
+        const elementoPuntuacionFinal = document.getElementById('puntuacionFinal');
+        const botonReiniciar = document.getElementById('botonReiniciar');
+
+        // Eventos
+        botonInicio.addEventListener('click', mostrarPantallaPersonaje);
+        botonJugar.addEventListener('click', comenzarJuego);
+        botonReiniciar.addEventListener('click', reiniciarJuego);
+        
+        // Selección de personaje
+        personajes.forEach(personaje => {
+            personaje.addEventListener('click', () => {
+                personajes.forEach(p => p.classList.remove('seleccionado'));
+                personaje.classList.add('seleccionado');
+                personajeSeleccionado = personaje.getAttribute('data-personaje');
+                botonJugar.disabled = false;
+                
+                // Actualizar imagen del personaje seleccionado
+                const rutaImagen = personaje.querySelector('.imagen-personaje').src;
+                imagenJugador.src = rutaImagen;
+            });
+        });
+
+        // Mostrar pantalla de selección de personaje
+        function mostrarPantallaPersonaje() {
+            pantallaInicio.style.display = 'none';
+            pantallaPersonaje.style.display = 'flex';
+        }
+
+        // Comenzar el juego
+        function comenzarJuego() {
+            pantallaPersonaje.style.display = 'none';
+            pantallaJuego.style.display = 'flex';
+            
+            // Reiniciar variables del juego
+            puntuacion = 0;
+            elementoPuntuacion.textContent = puntuacion;
+            posicionJugador = 300;
+            velocidadJugador = 0;
+            obstaculos = [];
+            
+            // Limpiar obstáculos existentes
+            document.querySelectorAll('.obstaculo').forEach(obstaculo => obstaculo.remove());
+            
+            // Posicionar el jugador
+            jugador.style.top = posicionJugador + 'px';
+            
+            // Iniciar el juego
+            juegoActivo = true;
+            ultimoObstaculoTiempo = Date.now();
+            
+            // Evento para hacer saltar el jugador (click y espacio)
+            contenedorJuego.addEventListener('click', saltar);
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space') {
+                    saltar();
+                }
+            });
+            
+            // Iniciar el bucle del juego
+            idAnimacion = requestAnimationFrame(bucleJuego);
+        }
+
+        // Saltar
+        function saltar() {
+            if (!juegoActivo) return;
+            velocidadJugador = -12;
+            
+            // Efecto visual al saltar
+            jugador.style.transform = 'rotate(-30deg)';
+            setTimeout(() => {
+                jugador.style.transform = 'rotate(0deg)';
+            }, 200);
+        }
+
+        // Bucle principal del juego
+        function bucleJuego() {
+            if (!juegoActivo) return;
+            
+            const ahora = Date.now();
+            const tiempoTranscurrido = ahora - ultimoObstaculoTiempo;
+            
+            // Actualizar posición del jugador
+            velocidadJugador += gravedad;
+            posicionJugador += velocidadJugador;
+            jugador.style.top = posicionJugador + 'px';
+            
+            // Generar nuevos obstáculos (2 tubos - arriba y abajo)
+            if (tiempoTranscurrido > frecuenciaObstaculos) {
+                crearObstaculos();
+                ultimoObstaculoTiempo = ahora;
+            }
+            
+            // Mover obstáculos
+            moverObstaculos();
+            
+            // Detectar colisiones
+            if (verificarColisiones()) {
+                terminarJuego();
+                return;
+            }
+            
+            // Continuar el bucle
+            idAnimacion = requestAnimationFrame(bucleJuego);
+        }
+
+        // Crear obstáculos (2 tubos)
+        function crearObstaculos() {
+            const alturaMinima = 100;
+            const alturaMaxima = alturaJuego - espacioEntreObstaculos - alturaMinima;
+            const alturaSuperior = Math.floor(Math.random() * (alturaMaxima - alturaMinima + 1)) + alturaMinima;
+            
+            // Obstáculo superior
+            const obstaculoSuperior = document.createElement('div');
+            obstaculoSuperior.className = 'obstaculo obstaculo-superior';
+            obstaculoSuperior.style.height = alturaSuperior + 'px';
+            
+            // Imagen del obstáculo (debes reemplazar con tu imagen)
+            const imgObstaculoSuperior = document.createElement('img');
+            imgObstaculoSuperior.src = 'img/obstaculo-superior.png';
+            obstaculoSuperior.appendChild(imgObstaculoSuperior);
+            
+            contenedorJuego.appendChild(obstaculoSuperior);
+            
+            // Obstáculo inferior
+            const obstaculoInferior = document.createElement('div');
+            obstaculoInferior.className = 'obstaculo obstaculo-inferior';
+            obstaculoInferior.style.height = (alturaJuego - alturaSuperior - espacioEntreObstaculos) + 'px';
+            
+            // Imagen del obstáculo (debes reemplazar con tu imagen)
+            const imgObstaculoInferior = document.createElement('img');
+            imgObstaculoInferior.src = 'img/obstaculo-inferior.png';
+            obstaculoInferior.appendChild(imgObstaculoInferior);
+            
+            contenedorJuego.appendChild(obstaculoInferior);
+            
+            obstaculos.push({
+                elemento: obstaculoSuperior,
+                x: anchoJuego,
+                altura: alturaSuperior,
+                pasado: false
+            });
+            
+            obstaculos.push({
+                elemento: obstaculoInferior,
+                x: anchoJuego,
+                altura: alturaJuego - alturaSuperior - espacioEntreObstaculos,
+                pasado: false
+            });
+        }
+
+        // Mover obstáculos
+        function moverObstaculos() {
+            for (let i = 0; i < obstaculos.length; i++) {
+                const obstaculo = obstaculos[i];
+                obstaculo.x -= 3; // Velocidad de los obstáculos
+                obstaculo.elemento.style.right = (anchoJuego - obstaculo.x - 80) + 'px';
+                
+                // Verificar si el jugador ha pasado el obstáculo
+                if (!obstaculo.pasado && obstaculo.x < 50 && i % 2 === 0) {
+                    obstaculo.pasado = true;
+                    puntuacion++;
+                    elementoPuntuacion.textContent = puntuacion;
+                }
+                
+                // Eliminar obstáculos que salen de la pantalla
+                if (obstaculo.x < -80) {
+                    obstaculo.elemento.remove();
+                    obstaculos.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        // Verificar colisiones
+        function verificarColisiones() {
+            // Colisión con el suelo o el techo
+            if (posicionJugador < 0 || posicionJugador > alturaJuego - 60) {
+                return true;
+            }
+            
+            // Colisión con obstáculos
+            const jugadorIzquierda = 50;
+            const jugadorDerecha = 50 + 60;
+            const jugadorSuperior = posicionJugador;
+            const jugadorInferior = posicionJugador + 60;
+            
+            for (const obstaculo of obstaculos) {
+                const obstaculoIzquierda = obstaculo.x;
+                const obstaculoDerecha = obstaculo.x + 80;
+                const obstaculoSuperior = obstaculo.elemento.classList.contains('obstaculo-superior') ? 0 : alturaJuego - obstaculo.altura;
+                const obstaculoInferior = obstaculoSuperior + obstaculo.altura;
+                
+                if (jugadorDerecha > obstaculoIzquierda && jugadorIzquierda < obstaculoDerecha &&
+                    jugadorInferior > obstaculoSuperior && jugadorSuperior < obstaculoInferior) {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+
+        // Terminar juego
+        function terminarJuego() {
+            juegoActivo = false;
+            cancelAnimationFrame(idAnimacion);
+            
+            // Mostrar pantalla de Game Over
+            pantallaGameOver.style.display = 'flex';
+            elementoPuntuacionFinal.textContent = `Puntuación: ${puntuacion}`;
+            
+            // Eliminar eventos
+            contenedorJuego.removeEventListener('click', saltar);
+            document.removeEventListener('keydown', (e) => {
+                if (e.code === 'Space') {
+                    saltar();
+                }
+            });
+        }
+
+        // Reiniciar juego
+        function reiniciarJuego() {
+            pantallaGameOver.style.display = 'none';
+            comenzarJuego();
+        }
+    </script>
+</body>
+</html>
