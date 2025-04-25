@@ -244,6 +244,18 @@
             font-weight: bold;
             text-transform: uppercase;
         }
+        
+
+        .audio-control {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 100;
+            color: white;
+            background: rgba(0,0,0,0.5);
+            padding: 5px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -312,14 +324,24 @@
                 </div>
             </div>
         </section>
+
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+   
+        <div class="audio-control">
+            <button id="toggleMusic">🔊</button>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.3">
+        </div>
     </main>
 
     <script>
-       
+    
         let personajeSeleccionado = null;
         let juegoActivo = false;
         let puntuacion = 0;
-        let gravedad = 0.6;
+        let gravedad = 0.5;
         let velocidadJugador = 0;
         let posicionJugador = 300;
         let obstaculos = [];
@@ -329,8 +351,18 @@
         let alturaJuego = 640;
         let anchoJuego = 360;
         let idAnimacion;
-
         
+
+        const FUERZA_SALTO = -10;  
+        const ROTACION_SALTO = -30; 
+        const TIEMPO_ROTACION = 200; 
+        
+   
+        const bgMusic = document.getElementById('bgMusic');
+        const toggleMusicBtn = document.getElementById('toggleMusic');
+        const volumeControl = document.getElementById('volumeControl');
+
+
         const pantallaInicio = document.getElementById('pantallaInicio');
         const pantallaPersonaje = document.getElementById('pantallaPersonaje');
         const pantallaJuego = document.getElementById('pantallaJuego');
@@ -345,12 +377,32 @@
         const elementoPuntuacionFinal = document.getElementById('puntuacionFinal');
         const botonReiniciar = document.getElementById('botonReiniciar');
 
-       
+
+        document.addEventListener('DOMContentLoaded', function() {
+            bgMusic.volume = 0.3;
+            bgMusic.play().catch(e => console.log("Autoplay bloqueado: ", e));
+        });
+        
+
+        toggleMusicBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                toggleMusicBtn.textContent = "🔊";
+            } else {
+                bgMusic.pause();
+                toggleMusicBtn.textContent = "🔇";
+            }
+        });
+ 
+        volumeControl.addEventListener('input', () => {
+            bgMusic.volume = volumeControl.value;
+        });
+
         botonInicio.addEventListener('click', mostrarPantallaPersonaje);
         botonJugar.addEventListener('click', comenzarJuego);
         botonReiniciar.addEventListener('click', reiniciarJuego);
         
-        
+
         personajes.forEach(personaje => {
             personaje.addEventListener('click', () => {
                 personajes.forEach(p => p.classList.remove('seleccionado'));
@@ -358,106 +410,96 @@
                 
                 botonJugar.disabled = false;
                 
-                
                 const rutaImagen = personaje.querySelector('.imagen-personaje').src;
                 imagenJugador.src = rutaImagen;
             });
         });
 
-        
+
         function mostrarPantallaPersonaje() {
             pantallaInicio.style.display = 'none';
             pantallaPersonaje.style.display = 'flex';
         }
 
-        
         function comenzarJuego() {
             pantallaPersonaje.style.display = 'none';
             pantallaJuego.style.display = 'flex';
             
-            
+
             puntuacion = 0;
             elementoPuntuacion.textContent = puntuacion;
             posicionJugador = 300;
             velocidadJugador = 0;
             obstaculos = [];
             
-            
             document.querySelectorAll('.obstaculo').forEach(obstaculo => obstaculo.remove());
             
-            
+
             jugador.style.top = posicionJugador + 'px';
-            
             
             juegoActivo = true;
             ultimoObstaculoTiempo = Date.now();
             
-            
+ 
             contenedorJuego.addEventListener('click', saltar);
             document.addEventListener('keydown', (e) => {
                 if (e.code === 'Space') {
                     saltar();
                 }
             });
-            
-            
+  
             idAnimacion = requestAnimationFrame(bucleJuego);
         }
 
-        
+
         function saltar() {
             if (!juegoActivo) return;
-            velocidadJugador = -12;
-            
-            
-            jugador.style.transform = 'rotate(-30deg)';
+            velocidadJugador = FUERZA_SALTO; 
+           
+            jugador.style.transform = `rotate(${ROTACION_SALTO}deg)`;
             setTimeout(() => {
                 jugador.style.transform = 'rotate(0deg)';
-            }, 200);
+            }, TIEMPO_ROTACION);
         }
 
-        
         function bucleJuego() {
             if (!juegoActivo) return;
             
             const ahora = Date.now();
             const tiempoTranscurrido = ahora - ultimoObstaculoTiempo;
             
-            
+
             velocidadJugador += gravedad;
             posicionJugador += velocidadJugador;
             jugador.style.top = posicionJugador + 'px';
             
-            
+
             if (tiempoTranscurrido > frecuenciaObstaculos) {
                 crearObstaculos();
                 ultimoObstaculoTiempo = ahora;
             }
             
-            
+
             moverObstaculos();
             
-            
+
             if (verificarColisiones()) {
                 terminarJuego();
                 return;
             }
-            
-            
+
             idAnimacion = requestAnimationFrame(bucleJuego);
         }
 
-        
         function crearObstaculos() {
             const alturaMinima = 100;
             const alturaMaxima = alturaJuego - espacioEntreObstaculos - alturaMinima;
             const alturaSuperior = Math.floor(Math.random() * (alturaMaxima - alturaMinima + 1)) + alturaMinima;
             
-           
+
             const obstaculoSuperior = document.createElement('div');
             obstaculoSuperior.className = 'obstaculo obstaculo-superior';
             obstaculoSuperior.style.height = alturaSuperior + 'px';
-            
             
             const imgObstaculoSuperior = document.createElement('img');
             imgObstaculoSuperior.src = 'images/juego/cilindros1.png';
@@ -465,12 +507,11 @@
             
             contenedorJuego.appendChild(obstaculoSuperior);
             
-           
+
             const obstaculoInferior = document.createElement('div');
             obstaculoInferior.className = 'obstaculo obstaculo-inferior';
             obstaculoInferior.style.height = (alturaJuego - alturaSuperior - espacioEntreObstaculos) + 'px';
             
-          
             const imgObstaculoInferior = document.createElement('img');
             imgObstaculoInferior.src = 'images/juego/cilindros.png';
             obstaculoInferior.appendChild(imgObstaculoInferior);
@@ -492,21 +533,19 @@
             });
         }
 
-       
         function moverObstaculos() {
             for (let i = 0; i < obstaculos.length; i++) {
                 const obstaculo = obstaculos[i];
                 obstaculo.x -= 3; 
                 obstaculo.elemento.style.right = (anchoJuego - obstaculo.x - 80) + 'px';
                 
-              
+
                 if (!obstaculo.pasado && obstaculo.x < 50 && i % 2 === 0) {
                     obstaculo.pasado = true;
                     puntuacion++;
                     elementoPuntuacion.textContent = puntuacion;
                 }
-                
-                
+
                 if (obstaculo.x < -80) {
                     obstaculo.elemento.remove();
                     obstaculos.splice(i, 1);
@@ -515,14 +554,13 @@
             }
         }
 
-     
         function verificarColisiones() {
-           
+
             if (posicionJugador < 0 || posicionJugador > alturaJuego - 60) {
                 return true;
             }
             
-         
+
             const jugadorIzquierda = 50;
             const jugadorDerecha = 50 + 60;
             const jugadorSuperior = posicionJugador;
@@ -543,7 +581,6 @@
             return false;
         }
 
-
         function terminarJuego() {
             juegoActivo = false;
             cancelAnimationFrame(idAnimacion);
@@ -551,7 +588,7 @@
             pantallaGameOver.style.display = 'flex';
             elementoPuntuacionFinal.textContent = `Puntuación: ${puntuacion}`;
             
-
+          
             contenedorJuego.removeEventListener('click', saltar);
             document.removeEventListener('keydown', (e) => {
                 if (e.code === 'Space') {
