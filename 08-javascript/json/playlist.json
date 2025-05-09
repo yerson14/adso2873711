@@ -1,0 +1,28 @@
+{
+    "songs": [
+        {   "id":1,
+            "title":"Sebastian",
+            "artist":"oblivion's mighty trash ",
+            "album":"Tha Nonstop",
+            "year":2021,
+            "cover":"images/cover-02.webp",
+            "song":"canciones/sebastián.mp3"
+        },
+        {   "id":2,
+            "title":"Lithium",
+            "artist":"Nirvana",
+            "album":"Never Mind",
+            "year":1991,
+            "cover":"",
+            "song":""
+        },
+        {   "id": 3,
+            "title":"Lithium",
+            "artist":"Nirvana",
+            "album":"Never Mind",
+            "year":1991,
+            "cover":"",
+            "song":""
+        }
+    ]
+}
