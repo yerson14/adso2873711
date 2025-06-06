@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
             AdoptionSeeder::class
         ]);
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-    }
+        User::factory(1000)->create([
+    //     //    'name' => 'Test User',
+    //     //    'email' => 'test@example.com',
+      ]);
+     }
 }

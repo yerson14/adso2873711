@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -27,7 +28,19 @@ class UserSeeder extends Seeder
         $user->password = bcrypt('admin');
         $user->role = 'Admin';
         $user->save();
-
+ 
+        //
+        DB::table('users')->insert([
+            'document' => 75000002,
+            'fullname' => 'Lara Croft',
+            'gender' => 'Female',
+            'birthdate' => '1992-02-14',
+            'phone' => '3000000002',
+            'email' => 'larac@mail.com',
+            'password' => Hash::make('12345'),
+            'created_at' => now(),
+            
+        ]);
     }
     // 'document',
     //     'fullname',
