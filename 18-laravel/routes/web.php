@@ -7,6 +7,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('sayhello/{name}', function (){
+    return "<h1>Hello Laravel".request()->name."</h1>";
+});
+
+Route::get('pets/all', function (){
+    $pets = App\Models\Pet::all();
+    dd($pets->toArray()); //Dump & Die
+});
+Route::get('pets/{id}', function (){
+    $pets = App\Models\Pet::find(request()->id);
+    dd($pets->toArray()); //Dump & Die
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

@@ -14,15 +14,17 @@ return new class extends Migration
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('image')->default('no-photo.webp');
-            $table->string('phone');
+            $table->string('image')->default('no-image.webp');
             $table->string('kind');
-            $table->double('weight');
-            $table->integer('age');
+            $table->string('weight');
+            $table->string('age');
             $table->string('breed');
             $table->string('location');
-            $table->boolean('active')->default(0);
-            $table->boolean('status')->default(1);
+
+            $table->text('description');
+
+            $table->boolean('active')->default(1);
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
@@ -35,4 +37,3 @@ return new class extends Migration
         Schema::dropIfExists('pets');
     }
 };
-

@@ -21,16 +21,18 @@ class PetSeeder extends Seeder
         $pet->age = 3;
         $pet->breed = 'Shiba Inu';
         $pet->location = 'Tokyo';
+        $pet->description = 'Firulais is a friendly dog who loves to play fetch and go for long walks.';
         $pet->save();
 
         // 2 Dog
-        $pet = new Pet;
-        $pet->name = 'Killer';
-        $pet->kind = 'Dog';
-        $pet->weight = '5';
-        $pet->age = 4;
-        $pet->breed = 'German Shepherd';
-        $pet->location = 'Berlin';
+        $pet                = new Pet;
+        $pet->name          = 'Killer';
+        $pet->kind          = 'Dog';
+        $pet->weight        = '5';
+        $pet->age           = 4;
+        $pet->breed         = 'German Shepherd';
+        $pet->location      = 'Berlin';
+        $pet->description   = 'Its a good boy.';
         $pet->save();
 
         // 1 Cat
@@ -41,6 +43,7 @@ class PetSeeder extends Seeder
         $pet->age = 7;
         $pet->breed = 'Persa';
         $pet->location = 'Abu Dhabi';
+        $pet->description = 'Michi is a very playful cat, loves to chase laser pointers and nap in the sun.';
         $pet->save();
 
         $pet = new Pet;
@@ -50,6 +53,7 @@ class PetSeeder extends Seeder
         $pet->age = 2;
         $pet->breed = 'Mini';
         $pet->location = 'New York';
+        $pet->description = 'Chanchi is a friendly pig who loves to play in the mud and eat apples.';
         $pet->save();
     }
 }

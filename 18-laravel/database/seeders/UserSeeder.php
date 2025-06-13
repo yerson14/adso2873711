@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
         $user->password = bcrypt('admin');
         $user->role = 'Admin';
         $user->save();
- 
+
         //
         DB::table('users')->insert([
             'document' => 75000002,
